@@ -5,11 +5,12 @@ window.onload = function () {
     const stage = document.querySelector('#stage');
     const ctx = stage.getContext('2d');
     document.addEventListener('keydown', keyPush)
-
-    setInterval(game, 80);
+    let velocidade = 50;
+    setInterval(game, velocidade);
 
     const vel = 1;
 
+    let placar = 0;
     let vx = vy = 0;
     let px = 10;
     let py = 15;
@@ -60,6 +61,9 @@ window.onload = function () {
             if (trail[i].x == px && trail[i].y == py) {
                 vx = vy = 0;
                 tail = 5;
+                if(vx != 0 || vy != 0){
+                    alert('acabou')
+                }
             }
         }
         // movimentação - push inclui no começo e shift tira do final
@@ -70,9 +74,11 @@ window.onload = function () {
         while (trail.length > tail) {
             trail.shift();
         }
-        // se comera maçã, adiciona um elemento na calda
+        // se comer a maçã, adiciona um elemento na calda
         if (ax == px && ay == py) {
             tail++;
+            //adiciona 10 ao placar
+            placar += 10;
             //reposiciona a maçã
             ax = Math.floor(Math.random() * qp);
             ay = Math.floor(Math.random() * qp);

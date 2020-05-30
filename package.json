@@ -1,22 +1,53 @@
 {
-  "name": "electron-quick-start",
+  "name": "jogodacobrinha",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Meu game da cobrinha",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "./build"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "hthttps://github.com/netrodslessa/snakegame",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Electron"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Rodrigo Lessa",
+  "license": "MIT",
+  "build": {
+    "appId": "cobrinha-rodrigo",
+    "asar": true,
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
+  },
   "devDependencies": {
-    "electron": "^9.0.0"
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }
